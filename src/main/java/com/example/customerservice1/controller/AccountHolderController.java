@@ -1,23 +1,27 @@
-package com.example.AccountHolderService.Controller;
+package com.example.customerservice1.controller;
 
-import com.example.AccountHolderService.Entity.AccountHolder;
-import com.example.AccountHolderService.Helper.CustomerMapper;
-import com.example.AccountHolderService.Model.AccountHolderModel;
-import com.example.AccountHolderService.Service.AccountHolderService;
+import com.example.customerservice1.entity.AccountHolder;
+import com.example.customerservice1.entity.CustomerConstants;
+import com.example.customerservice1.helper.CustomerMapper;
+import com.example.customerservice1.model.AccountHolderModel;
+import com.example.customerservice1.service.AccountHolderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Customer Service Controller
+ * @author  Mounika
+ * @version 1.0
+ * @since   2020-08-04
+ */
 @RestController
 @RequestMapping("/v1/customers")
 @RefreshScope
@@ -31,10 +35,10 @@ public class AccountHolderController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
+            @ApiResponse(code = CustomerConstants.SUCCESS, message = CustomerConstants.SUCCESS_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_AUTHORIZED, message = CustomerConstants.NOT_AUTHORIZED_MESSAGE),
+            @ApiResponse(code = CustomerConstants.FORBIDDEN, message = CustomerConstants.FORBIDDEN_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_FOUND, message = CustomerConstants.NOT_FOUND_MESSAGE) })
     @GetMapping
     public ResponseEntity<List<AccountHolderModel>> fetchCustomers(){
         List<AccountHolderModel> customers = service.getAccountHolders().stream().map(o->CustomerMapper.toModel(o))
@@ -43,10 +47,10 @@ public class AccountHolderController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
+            @ApiResponse(code = CustomerConstants.SUCCESS, message = CustomerConstants.SUCCESS_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_AUTHORIZED, message = CustomerConstants.NOT_AUTHORIZED_MESSAGE),
+            @ApiResponse(code = CustomerConstants.FORBIDDEN, message = CustomerConstants.FORBIDDEN_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_FOUND, message = CustomerConstants.NOT_FOUND_MESSAGE) })
     @GetMapping("/{customerId}")
     public ResponseEntity<AccountHolderModel> fetchByCustomerId(@ApiParam @PathVariable long customerId){
         Optional<AccountHolder> customer = service.getAccountHolder(customerId);
@@ -57,10 +61,10 @@ public class AccountHolderController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
+            @ApiResponse(code = CustomerConstants.SUCCESS, message = CustomerConstants.SUCCESS_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_AUTHORIZED, message = CustomerConstants.NOT_AUTHORIZED_MESSAGE),
+            @ApiResponse(code = CustomerConstants.FORBIDDEN, message = CustomerConstants.FORBIDDEN_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_FOUND, message = CustomerConstants.NOT_FOUND_MESSAGE) })
     @PostMapping
     public ResponseEntity<AccountHolderModel> addOrUpdateCustomer(@RequestBody AccountHolderModel model){
         Optional<AccountHolder> customer = service.getAccountHolder(model.getId());
@@ -74,10 +78,10 @@ public class AccountHolderController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
+            @ApiResponse(code = CustomerConstants.SUCCESS, message = CustomerConstants.SUCCESS_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_AUTHORIZED, message = CustomerConstants.NOT_AUTHORIZED_MESSAGE),
+            @ApiResponse(code = CustomerConstants.FORBIDDEN, message = CustomerConstants.FORBIDDEN_MESSAGE),
+            @ApiResponse(code = CustomerConstants.NOT_FOUND, message = CustomerConstants.NOT_FOUND_MESSAGE) })
     @DeleteMapping("/{accountId}")
     public ResponseEntity<AccountHolderModel> deleteCustomer(@PathVariable long accountId){
         Optional<AccountHolder> account = service.getAccountHolder(accountId);

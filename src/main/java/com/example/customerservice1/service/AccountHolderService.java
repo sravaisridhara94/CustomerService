@@ -1,12 +1,17 @@
-package com.example.AccountHolderService.Service;
+package com.example.customerservice1.service;
 
-import com.example.AccountHolderService.Entity.AccountHolder;
-import com.example.AccountHolderService.Repository.AccountHoldersRepository;
+import com.example.customerservice1.entity.AccountHolder;
+import com.example.customerservice1.repository.AccountHoldersRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Customer Service
+ * @author  Mounika
+ * @version 1.0
+ * @since   2020-08-04
+ */
 @Service
 public class AccountHolderService {
 

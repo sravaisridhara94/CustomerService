@@ -1,4 +1,4 @@
-package com.example.AccountHolderService.Entity;
+package com.example.customerservice1.entity;
 
 import javax.persistence.*;
 

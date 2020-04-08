@@ -1,8 +1,7 @@
-package com.example.AccountHolderService.Helper;
+package com.example.customerservice1.helper;
 
-import com.example.AccountHolderService.Entity.AccountHolder;
-import com.example.AccountHolderService.Model.AccountHolderModel;
-
+import com.example.customerservice1.entity.AccountHolder;
+import com.example.customerservice1.model.AccountHolderModel;
 
 public class CustomerMapper {
 
